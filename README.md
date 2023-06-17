@@ -11,6 +11,44 @@ Simple code only state machine that's is originally based off [GDQuest's impleme
 
 ## Usage
 
+### State node
+```gd
+# Invoked when transitioning to this state. Used for setup and
+# handling any paramaters passed from the previous state.
+func enter(params: Dictionary) -> void:
+	pass
+
+# Invoked when transitioning to another state. Generally used
+# for cleanup, it also will yield if `await` is used inside of it.
+func exit() -> void:
+	pass
+
+# Equivalent to `_ready`.
+func awake() -> void:
+	pass
+
+# Equivalent to `_process`.
+func update(delta: float) -> void:
+	pass
+
+# Equivalent to `_physics_process`.
+func physics_update(delta: float) -> void:
+	pass
+
+# Equivalent to `_input`.
+func handle_input(event: InputEvent) -> void:
+	pass
+
+# Handle messages that have been sent to the state machine.
+#
+# This is usefull for when something external wants to change
+# the state, but avoids forefully transitioning by using
+# `transition_to` directly.
+func handle_message(title: String, _params: Dictionary) -> void:
+	pass
+
+```
+
 ### Transition to a state
 
 ```gd
@@ -35,4 +73,11 @@ state_machine.deffered_transition_to("Jump", func():
     "velocity": velocity
   }
 )
+```
+
+### Transition to the previous state
+
+```gs
+# Transition to whatever previous state invoked the current state.
+state_machine.transition_to_previous_state()
 ```
