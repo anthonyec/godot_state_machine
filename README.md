@@ -12,7 +12,7 @@ Simple code only state machine that's is originally based off [GDQuest's impleme
 ## Usage
 
 ### State node
-```gd
+```gdscript
 # Invoked when transitioning to this state. Used for setup and
 # handling any paramaters passed from the previous state.
 func enter(params: Dictionary) -> void:
@@ -51,7 +51,7 @@ func handle_message(title: String, _params: Dictionary) -> void:
 
 ### Transition to a state
 
-```gd
+```gdscript
 # Transition to a state using the name of the node.
 state_machine.transition_to("Jump")
 
@@ -63,7 +63,7 @@ state_machine.transition_to("Jump", {
 
 ### Deffered transition
 
-```gd
+```gdscript
 # This will queue a state change, waiting for one physics frame to have been completed before transitioning.
 state_machine.deffered_transition_to("Jump")
 
@@ -77,7 +77,7 @@ state_machine.deffered_transition_to("Jump", func():
 
 ### Transition to the previous state
 
-```gs
+```gdscript
 # Transition to whatever previous state invoked the current state.
 state_machine.transition_to_previous_state()
 ```
